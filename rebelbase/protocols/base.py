@@ -5,7 +5,7 @@ from rebelbase.protocols.number import NumberProtocol
 
 class BaseProtocol(Protocol):
     """
-    Numeric base manager protocol.
+    Base number factory protocol.
     """
 
     @property
