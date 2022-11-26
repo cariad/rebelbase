@@ -46,7 +46,7 @@ class Base(ABC, BaseProtocol):
 
         return 16 if self._fraction_len is None else self._fraction_len
 
-    def from_decimal(self, value: float) -> "Number":
+    def number(self, value: float) -> "Number":
         """
         Converts the decimal `value` to a number of this base.
         """
@@ -74,10 +74,13 @@ class Base(ABC, BaseProtocol):
             tuple(frac_bits),
         )
 
-    def string(self, v: NumberProtocol) -> str:
+    def string(self, v: float | int | NumberProtocol) -> str:
         """
         Gets the string representation of the number `v`.
         """
+
+        if isinstance(v, float | int):
+            return self.string(self.number(v))
 
         bits: List[str] = []
 
@@ -87,7 +90,7 @@ class Base(ABC, BaseProtocol):
         if v.integral:
             bits.extend([str(self._digits[x]) for x in v.integral])
         else:
-            bits.append(self._digits[0])
+            bits.append(str(self._digits[0]))
 
         if v.fractional:
             bits.append(".")
