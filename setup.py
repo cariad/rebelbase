@@ -43,9 +43,11 @@ setup(
     name="rebelbase",
     packages=[
         "rebelbase",
+        "rebelbase.protocols",
     ],
     package_data={
         "rebelbase": ["py.typed"],
+        "rebelbase.protocols": ["py.typed"],
     },
     python_requires=">=3.9",
     url="https://github.com/cariad/rebelbase",
