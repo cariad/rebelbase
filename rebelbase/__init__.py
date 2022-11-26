@@ -6,6 +6,8 @@ For usage and support, see https://github.com/cariad/rebelbase.
 
 from importlib.resources import files
 
+from rebelbase.value import Value
+
 
 def version() -> str:
     """
@@ -17,5 +19,6 @@ def version() -> str:
 
 
 __all__ = [
+    "Value",
     "version",
 ]
