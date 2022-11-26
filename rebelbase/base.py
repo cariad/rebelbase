@@ -2,8 +2,8 @@ from abc import ABC
 from math import modf
 from typing import Any, List, Optional
 
-from rebelbase.protocols import BaseProtocol, NumberProtocol
 from rebelbase.number import Number
+from rebelbase.protocols import BaseProtocol, NumberProtocol
 
 
 class Base(ABC, BaseProtocol):
