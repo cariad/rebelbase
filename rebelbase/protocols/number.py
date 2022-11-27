@@ -6,6 +6,9 @@ class NumberProtocol(Protocol):
     Raw numeric value protocol.
     """
 
+    def __abs__(self) -> "NumberProtocol":
+        ...
+
     @property
     def fractional(self) -> tuple[int, ...]:
         ...
