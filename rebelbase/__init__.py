@@ -7,6 +7,7 @@ For usage and support, see https://github.com/cariad/rebelbase.
 from importlib.resources import files
 
 from rebelbase.base2 import Base2
+from rebelbase.base26 import Base26
 from rebelbase.number import Number
 from rebelbase.value import Value
 
@@ -22,6 +23,7 @@ def version() -> str:
 
 __all__ = [
     "Base2",
+    "Base26",
     "Number",
     "Value",
     "version",

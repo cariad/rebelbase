@@ -1,6 +1,6 @@
 from pytest import mark
 
-from rebelbase.base2 import Base2
+from rebelbase import Base2
 
 
 @mark.parametrize(
