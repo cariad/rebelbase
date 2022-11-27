@@ -1,7 +1,4 @@
-from rebelbase.protocols import BaseProtocol
-
-
-class Number:
+class Value:
     """
     A raw numeric value.
 
@@ -21,7 +18,7 @@ class Number:
 
     def __init__(
         self,
-        base: BaseProtocol,
+        base: int,
         positive: bool,
         integral: tuple[int, ...],
         fractional: tuple[int, ...],
@@ -31,13 +28,13 @@ class Number:
         self._integral = integral
         self._fractional = fractional
 
-    def __abs__(self) -> "Number":
-        return Number(self.base, True, self.integral, self.fractional)
+    def __abs__(self) -> "Value":
+        return Value(self.base, True, self.integral, self.fractional)
 
     def __eq__(self, other: object) -> bool:
         return (
-            isinstance(other, Number)
-            and self.base.base == other.base.base
+            isinstance(other, Value)
+            and self.base == other.base
             and self.positive == other.positive
             and self.integral == other.integral
             and self.fractional == other.fractional
@@ -47,11 +44,8 @@ class Number:
         sign = "+" if self._positive else "-"
         return f"{sign}{self._integral}.{self._fractional}"
 
-    def __str__(self) -> str:
-        return self._base.string(self)
-
     @property
-    def base(self) -> BaseProtocol:
+    def base(self) -> int:
         """
         Numeric base.
         """
