@@ -69,10 +69,16 @@ class Value:
 
         result: float = 0
 
-        for index, i in enumerate(self.integral):
-            result += pow(self._base, index) * i
-
-        log.debug(self.fractional)
+        for index, i in enumerate(reversed(self.integral)):
+            power = pow(self._base, index)
+            value = power * i
+            log.debug(
+                "At index %s, power is %s and value is %s",
+                index,
+                power,
+                value,
+            )
+            result += value
 
         for index, i in enumerate(self.fractional):
             result += 1 / pow(self._base, index + 1) * i

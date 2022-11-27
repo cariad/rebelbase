@@ -1,6 +1,6 @@
 from abc import ABC, abstractmethod
 from math import modf
-from typing import Any, List
+from typing import List
 
 from rebelbase.log import log
 from rebelbase.value import Value
@@ -11,8 +11,8 @@ class Number(ABC):
     A number.
     """
 
-    def __init__(self, value: int | float | str | Value) -> None:
-        if isinstance(value, int | float):
+    def __init__(self, value: float | int | str | Value) -> None:
+        if isinstance(value, float | int):
             self._value = value
         elif isinstance(value, str):
             self._value = self.from_string(value).float
@@ -22,7 +22,7 @@ class Number(ABC):
         if self._value == 0 and not self.can_represent_zero():
             raise ValueError(f"{self.name()} cannot represent zero")
 
-        log.debug("Initialised %s with %s", self.name(), value)
+        log.debug("Initialised %s with %s", self.name(), self._value)
 
     def __str__(self) -> str:
         """
@@ -75,7 +75,7 @@ class Number(ABC):
 
     @classmethod
     @abstractmethod
-    def digits(cls) -> tuple[Any, ...]:
+    def digits(cls) -> tuple[str, ...]:
         """
         Gets the digits of this numeric system in ascending value.
         """
@@ -90,6 +90,9 @@ class Number(ABC):
 
         positive = True
 
+        if not v:
+            return Value(cls.base())
+
         if v[0] == "-":
             positive = False
             v = v[1:]
@@ -97,24 +100,28 @@ class Number(ABC):
         dot_index = v.find(".")
 
         if dot_index > 0:
-            integer_string = v[:dot_index]
-            fractional_string = v[dot_index:]
+            integral_string = v[:dot_index]
+            fractional_string = v[dot_index+1:]
         else:
-            integer_string = v
+            integral_string = v
             fractional_string = None
 
         digits = cls.digits()
 
-        integer_bits: List[int] = []
-        for iv in integer_string:
-            integer_bits.append(digits.index(iv))
+        integral_bits: List[int] = []
+        for digit in integral_string:
+            digit_value = digits.index(digit)
+            log.debug("Digit %s has value %s", digit, digit_value)
+            integral_bits.append(digit_value)
+
+        log.debug("Integral bits: %s", integral_bits)
 
         fractional_bits: List[int] = []
         if fractional_string:
             for fv in fractional_string:
                 fractional_bits.append(digits.index(fv))
 
-        return Value(cls.base(), positive, integer_bits, fractional_bits)
+        return Value(cls.base(), positive, integral_bits, fractional_bits)
 
     @classmethod
     def name(cls) -> str:
@@ -123,6 +130,14 @@ class Number(ABC):
         """
 
         return cls.__name__
+
+    @property
+    def value(self) -> float | int:
+        """
+        Gets this number's value.
+        """
+
+        return self._value
 
     @property
     def values(self) -> "Value":

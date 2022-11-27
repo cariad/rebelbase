@@ -1,5 +1,3 @@
-from typing import Any
-
 from rebelbase.number import Number
 
 
@@ -13,13 +11,13 @@ class Base26Continuous(Number):
     """
 
     @classmethod
-    def digits(cls) -> tuple[Any, ...]:
+    def digits(cls) -> tuple[str, ...]:
         """
         Gets the digits of this numeric system in ascending value.
         """
 
         # This system doesn't support zeros; the first digit is a placeholder.
-        return tuple([None, *tuple(chr(n) for n in range(65, 65 + 26))])
+        return tuple(["_", *tuple(chr(n) for n in range(65, 65 + 26))])
 
     @classmethod
     def can_represent_zero(cls) -> bool:
