@@ -1,70 +1,167 @@
 from abc import ABC, abstractmethod
 from math import modf
-from typing import Any, List
+from typing import List
 
+from rebelbase.log import log
 from rebelbase.value import Value
 
 
 class Number(ABC):
     """
     A number.
-
-    `value` describes the number's decimal value.
     """
 
-    def __init__(self, value: float) -> None:
-        self._value = value
+    def __init__(self, value: float | int | str | Value) -> None:
+        if isinstance(value, float | int):
+            self._value = value
+        elif isinstance(value, str):
+            self._value = self.from_string(value).float
+        else:
+            self._value = value.float
+
+        if self._value == 0 and not self.can_represent_zero():
+            raise ValueError(f"{self.name()} cannot represent zero")
+
+        log.debug("Initialised %s with %s", self.name(), self._value)
 
     def __str__(self) -> str:
-        n = self.values
+        """
+        Converts the value to a string.
+
+        Override to change the format.
+        """
 
         bits: List[str] = []
+        v = self.values
 
-        if not n.positive:
+        if not v.positive:
             bits.append("-")
 
-        if n.integral:
-            bits.extend([str(self.digits[x]) for x in n.integral])
-        else:
-            bits.append(str(self.digits[0]))
+        digits = self.digits()
 
-        if n.fractional:
+        if v.integral:
+            bits.extend([str(digits[x]) for x in v.integral])
+        else:
+            bits.append(str(digits[0]))
+
+        if v.fractional:
             bits.append(".")
-            bits.extend([str(self.digits[x]) for x in n.fractional])
+            bits.extend([str(digits[x]) for x in v.fractional])
 
         return "".join(bits)
 
-    @property
-    def base(self) -> int:
+    @classmethod
+    def base(cls) -> int:
         """
-        Numeric base.
-
-        For example, "10" describes a base 10 system.
+        Gets the base of this number.
         """
 
-        return len(self.digits)
+        base = len(cls.digits())
 
-    @property
+        if not cls.can_represent_zero():
+            # If this number can't represent zero then the first digit will
+            # be a placeholder and shouldn't be counted.
+            base -= 1
+
+        return base
+
+    @classmethod
+    def can_represent_zero(cls) -> bool:
+        """
+        Indicates whether or not this numeric system can represent zero.
+        """
+
+        return True
+
+    @classmethod
     @abstractmethod
-    def digits(self) -> tuple[Any, ...]:
+    def digits(cls) -> tuple[str, ...]:
         """
-        The digits of this numeric system in ascending order.
+        Gets the digits of this numeric system in ascending value.
         """
+
+    @classmethod
+    def from_string(cls, v: str) -> Value:
+        """
+        Converts the string `v` to a Value.
+
+        Override this function to provide a custom translation.
+        """
+
+        positive = True
+
+        if not v:
+            return Value(cls.base())
+
+        if v[0] == "-":
+            positive = False
+            v = v[1:]
+
+        dot_index = v.find(".")
+
+        if dot_index > 0:
+            integral_string = v[:dot_index]
+            fractional_string = v[dot_index + 1 :]  # noqa: E203
+        else:
+            integral_string = v
+            fractional_string = None
+
+        digits = cls.digits()
+
+        integral_bits: List[int] = []
+        for digit in integral_string:
+            digit_value = digits.index(digit)
+            log.debug("Digit %s has value %s", digit, digit_value)
+            integral_bits.append(digit_value)
+
+        log.debug("Integral bits: %s", integral_bits)
+
+        fractional_bits: List[int] = []
+        if fractional_string:
+            for fv in fractional_string:
+                fractional_bits.append(digits.index(fv))
+
+        return Value(cls.base(), positive, integral_bits, fractional_bits)
+
+    @classmethod
+    def name(cls) -> str:
+        """
+        Gets the name of this number type.
+        """
+
+        return cls.__name__
+
+    @property
+    def value(self) -> float | int:
+        """
+        Gets this number's value.
+        """
+
+        return self._value
 
     @property
     def values(self) -> "Value":
         """
-        Converts the decimal `value` to a number of this base.
+        Gets this number's value as a Value.
         """
+
+        base = self.base()
+
+        if self._value == 0:
+            return Value(base)
 
         f, i = modf(abs(self._value))
 
         int_bits: List[int] = []
-        int_remain = int(i)
+        quotient = int(i)
 
-        while int_remain > 0:
-            int_bits.append(int_remain % self.base)
-            int_remain = int_remain // self.base
+        while quotient > 0:
+            remainder = quotient % base
+            quotient = quotient // base
+            if remainder == 0 and not self.can_represent_zero():
+                remainder = base
+                quotient -= 1
+            int_bits.append(remainder)
 
         frac_bits: List[int] = []
         frac_remain = f
@@ -72,12 +169,15 @@ class Number(ABC):
         fraction_len = 16
 
         while frac_remain > 0 and len(frac_bits) <= fraction_len:
-            frac_remain, i = modf(frac_remain * self.base)
+            frac_remain, i = modf(frac_remain * base)
             frac_bits.append(int(i))
 
-        return Value(
-            self.base,
+        value = Value(
+            base,
             self._value >= 0,
             tuple(reversed(int_bits)),
             tuple(frac_bits),
         )
+
+        log.debug("%s == %s", self._value, value)
+        return value
