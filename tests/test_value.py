@@ -14,6 +14,7 @@ def test_abs() -> None:
         (Value(2, integral=(1,)), 1),
         (Value(2, integral=(1,), fractional=(1,)), 1.5),
         (Value(2, integral=(1,), fractional=(1, 1)), 1.75),
+        (Value(2, integral=(1,), fractional=(1, 1), positive=False), -1.75),
         (Value(10, integral=()), 0),
         (Value(10, integral=(1,)), 1),
         (Value(10, integral=(2,)), 2),

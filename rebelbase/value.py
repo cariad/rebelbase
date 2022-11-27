@@ -77,7 +77,7 @@ class Value:
         for index, i in enumerate(self.fractional):
             result += 1 / pow(self._base, index + 1) * i
 
-        return result
+        return result if self.positive else 0 - result
 
     @property
     def fractional(self) -> tuple[int, ...]:
