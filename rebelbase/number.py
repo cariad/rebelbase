@@ -31,6 +31,9 @@ class Number:
         self._integral = integral
         self._fractional = fractional
 
+    def __abs__(self) -> "Number":
+        return Number(self.base, True, self.integral, self.fractional)
+
     def __eq__(self, other: object) -> bool:
         return (
             isinstance(other, Number)
