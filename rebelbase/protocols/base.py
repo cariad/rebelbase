@@ -12,5 +12,5 @@ class BaseProtocol(Protocol):
     def base(self) -> int:
         ...
 
-    def string(self, v: NumberProtocol) -> str:
+    def string(self, n: NumberProtocol) -> str:
         ...
