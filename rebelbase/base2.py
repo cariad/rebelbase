@@ -1,15 +1,17 @@
-from typing import Optional
+from typing import Any
 
-from rebelbase.base import Base
+from rebelbase.number import Number
 
 
-class Base2(Base):
+class Base2(Number):
     """
-    Base 2 number factory.
-
-    `fraction_len` describes the maximum number of digits to calculate
-    fractional values. Defaults to 16.
+    A base 2 number.
     """
 
-    def __init__(self, fraction_len: Optional[int] = None) -> None:
-        super().__init__(2, (0, 1), fraction_len)
+    @property
+    def digits(self) -> tuple[Any, ...]:
+        """
+        The digits of this base 2 numeric system.
+        """
+
+        return (0, 1)
