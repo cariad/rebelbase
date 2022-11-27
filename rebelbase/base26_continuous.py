@@ -5,10 +5,10 @@ from rebelbase.number import Number
 
 class Base26Continuous(Number):
     """
-    A base 26 system that supports continuous sequences; for example: A, B,
+    A base 26 number that supports continuous sequences; for example: A, B,
     C...X, Y, Z, AA, AB, AC...ZX, ZY, ZZ, AAA, AAB...
 
-    To facilitate continuous sequences, this system does not support zeros. "A"
+    To facilitate continuous sequences, this number does not support zeros. "A"
     represents the decimal value 1.
     """
 

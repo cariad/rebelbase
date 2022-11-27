@@ -1,5 +1,3 @@
-from typing import Any
-
 from rebelbase.number import Number
 
 
@@ -8,10 +6,10 @@ class Base2(Number):
     A base 2 number.
     """
 
-    @property
-    def digits(self) -> tuple[Any, ...]:
+    @classmethod
+    def digits(cls) -> tuple[int, ...]:
         """
-        The digits of this numeric system in ascending order.
+        Gets the digits of this numeric system in ascending value.
         """
 
         return (0, 1)
