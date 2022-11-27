@@ -1,3 +1,8 @@
+from typing import Optional, Sequence, cast
+
+from rebelbase.log import log
+
+
 class Value:
     """
     A raw numeric value.
@@ -19,14 +24,18 @@ class Value:
     def __init__(
         self,
         base: int,
-        positive: bool,
-        integral: tuple[int, ...],
-        fractional: tuple[int, ...],
+        positive: bool = True,
+        integral: Optional[Sequence[int]] = None,
+        fractional: Optional[Sequence[int]] = None,
     ) -> None:
         self._base = base
         self._positive = positive
-        self._integral = integral
-        self._fractional = fractional
+        self._integral = (
+            tuple(integral) if integral else cast(tuple[int, ...], ())
+        )
+        self._fractional = (
+            tuple(fractional) if fractional else cast(tuple[int, ...], ())
+        )
 
     def __abs__(self) -> "Value":
         return Value(self.base, True, self.integral, self.fractional)
@@ -42,7 +51,7 @@ class Value:
 
     def __repr__(self) -> str:
         sign = "+" if self._positive else "-"
-        return f"{sign}{self._integral}.{self._fractional}"
+        return f"{sign}{self._integral}.{self._fractional}b{self._base}"
 
     @property
     def base(self) -> int:
@@ -51,6 +60,24 @@ class Value:
         """
 
         return self._base
+
+    @property
+    def float(self) -> float:
+        """
+        Value as a floating point number.
+        """
+
+        result: float = 0
+
+        for index, i in enumerate(self.integral):
+            result += pow(self._base, index) * i
+
+        log.debug(self.fractional)
+
+        for index, i in enumerate(self.fractional):
+            result += 1 / pow(self._base, index + 1) * i
+
+        return result
 
     @property
     def fractional(self) -> tuple[int, ...]:
