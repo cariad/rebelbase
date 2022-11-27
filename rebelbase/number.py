@@ -7,18 +7,32 @@ from rebelbase.value import Value
 
 class Number(ABC):
     """
-    Number.
+    A number.
+
+    `value` describes the number's decimal value.
     """
 
     def __init__(self, value: float) -> None:
         self._value = value
 
-    @property
-    @abstractmethod
-    def digits(self) -> tuple[Any, ...]:
-        """
-        The digits of this numeric system in ascending order.
-        """
+    def __str__(self) -> str:
+        n = self.values
+
+        bits: List[str] = []
+
+        if not n.positive:
+            bits.append("-")
+
+        if n.integral:
+            bits.extend([str(self.digits[x]) for x in n.integral])
+        else:
+            bits.append(str(self.digits[0]))
+
+        if n.fractional:
+            bits.append(".")
+            bits.extend([str(self.digits[x]) for x in n.fractional])
+
+        return "".join(bits)
 
     @property
     def base(self) -> int:
@@ -29,6 +43,13 @@ class Number(ABC):
         """
 
         return len(self.digits)
+
+    @property
+    @abstractmethod
+    def digits(self) -> tuple[Any, ...]:
+        """
+        The digits of this numeric system in ascending order.
+        """
 
     @property
     def values(self) -> "Value":
@@ -60,22 +81,3 @@ class Number(ABC):
             tuple(reversed(int_bits)),
             tuple(frac_bits),
         )
-
-    def __str__(self) -> str:
-        n = self.values
-
-        bits: List[str] = []
-
-        if not n.positive:
-            bits.append("-")
-
-        if n.integral:
-            bits.extend([str(self.digits[x]) for x in n.integral])
-        else:
-            bits.append(str(self.digits[0]))
-
-        if n.fractional:
-            bits.append(".")
-            bits.extend([str(self.digits[x]) for x in n.fractional])
-
-        return "".join(bits)
