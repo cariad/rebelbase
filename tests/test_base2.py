@@ -20,7 +20,7 @@ def test_init__string(value: str, expect: float) -> None:
 
 
 def test_init__value() -> None:
-    assert Base2(Value(2, integral=(1,0,1))).value == 5
+    assert Base2(Value(2, integral=(1, 0, 1))).value == 5
 
 
 @mark.parametrize(

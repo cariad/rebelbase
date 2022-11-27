@@ -2,6 +2,7 @@ from pytest import mark, raises
 
 from rebelbase import Base26Continuous, Value
 
+
 @mark.parametrize(
     "value, expect",
     [

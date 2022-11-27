@@ -101,7 +101,7 @@ class Number(ABC):
 
         if dot_index > 0:
             integral_string = v[:dot_index]
-            fractional_string = v[dot_index+1:]
+            fractional_string = v[dot_index + 1 :]  # noqa: E203
         else:
             integral_string = v
             fractional_string = None
