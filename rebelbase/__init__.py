@@ -8,7 +8,7 @@ from importlib.resources import files
 
 from rebelbase.base import Base
 from rebelbase.base2 import Base2
-from rebelbase.number import Number
+from rebelbase.value import Value
 
 
 def version() -> str:
@@ -23,6 +23,6 @@ def version() -> str:
 __all__ = [
     "Base",
     "Base2",
-    "Number",
+    "Value",
     "version",
 ]
