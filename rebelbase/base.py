@@ -74,26 +74,26 @@ class Base(ABC, BaseProtocol):
             tuple(frac_bits),
         )
 
-    def string(self, v: float | int | NumberProtocol) -> str:
+    def string(self, n: float | int | NumberProtocol) -> str:
         """
         Gets the string representation of the number `v`.
         """
 
-        if isinstance(v, float | int):
-            return self.string(self.number(v))
+        if isinstance(n, float | int):
+            return self.string(self.number(n))
 
         bits: List[str] = []
 
-        if not v.positive:
+        if not n.positive:
             bits.append("-")
 
-        if v.integral:
-            bits.extend([str(self._digits[x]) for x in v.integral])
+        if n.integral:
+            bits.extend([str(self._digits[x]) for x in n.integral])
         else:
             bits.append(str(self._digits[0]))
 
-        if v.fractional:
+        if n.fractional:
             bits.append(".")
-            bits.extend([str(self._digits[x]) for x in v.fractional])
+            bits.extend([str(self._digits[x]) for x in n.fractional])
 
         return "".join(bits)
