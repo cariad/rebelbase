@@ -3,9 +3,9 @@ from typing import Any
 from rebelbase.number import Number
 
 
-class Base2(Number):
+class Base26(Number):
     """
-    A base 2 number.
+    A base 26 number.
     """
 
     @property
@@ -14,4 +14,4 @@ class Base2(Number):
         The digits of this numeric system in ascending order.
         """
 
-        return (0, 1)
+        return tuple([chr(n) for n in range(65, 65 + 26)])
