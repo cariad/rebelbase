@@ -17,11 +17,11 @@ class Base4(Number):
 
 ## Custom string representation
 
-By default, numbers are represented with a `-` to indicate negativity and a `.` to seperate the integral and fractional parts.
+By default, string representations are prefixed with `-` to indicate negativity and seperate the integral and fractional parts with a `.`.
 
 ```python
-print(Base4(-7))    # Decimal -7    == base 4 -13
-print(Base4(7.75))  # Decimal  7.75 == base 4  13.3
+print(Base4(-7))    # "-13"   (Decimal -7    == base 4 -13)
+print(Base4(7.75))  #  "13.3" (Decimal  7.75 == base 4  13.3)
 ```
 
 To customise the string representation, override the `to_string` and `from_string` functions.
@@ -71,18 +71,18 @@ class Base4(Number):
         return "".join(bits)
 
 
-print(Base4(-7))             # Decimal -7    == base 4 -13
-print(Base4(7.75))           # Decimal  7.75 == base 4 +13,3
-print(int(Base4("+11")))     # Base 4 +11    == decimal  5
-print(float(Base4("+3,12"))) # Base 4  +3,12 == decimal  3.375
+print(Base4(-7))             # "-13"     (Decimal -7    == base 4 -13)
+print(Base4(7.75))           # "+13,3"   (Decimal  7.75 == base 4 +13,3)
+print(int(Base4("+11")))     #   "5"     (Base 4 +11    == decimal  5)
+print(float(Base4("+3,12"))) #   "3.375" (Base 4  +3,12 == decimal  3.375)
 ```
 
 The `Value` class describes a number by its:
 
 - Base as an integer decimal.
 - Sign; `True` indicates a positive value.
-- Tuple of integral digit values, from most-significant on the left to least-significant on the right. For example, an integral value represented by `1023` would be recorded as `(1, 0, 2, 3)`.
-- Tuple of fractional digit values, from most-significant on the left to least-significant on the right. For example, a fractional value represented by `7012` would be recorded as `(7, 0, 1, 2)`.
+- Tuple of integral digit values from most- to least-significant. For example, an integral value represented by `1023` would be recorded as `(1, 0, 2, 3)`.
+- Tuple of fractional digit values from most- to least-significant. For example, a fractional value represented by `7012` would be recorded as `(7, 0, 1, 2)`.
 
 The `value_of_digit()` function returns the integer bit value of the passed digit. Respectively, `digit_for_value()` returns the digit for any passed integer bit value.
 

@@ -11,15 +11,15 @@ from rebelbase import Base3
 
 n = Base3(42)           # Represent decimal 42 in base 3
 
-print("n:    ", n)      # Decimal 42     == base 3  1120
-print("n + 1:", n + 1)  # Decimal 42 + 1 == base 3  1121
-print("n - 1:", n - 1)  # Decimal 42 - 1 == base 3  1112
-print("n / 2:", n / 2)  # Decimal 42 / 2 == base 3   210
-print("n * 2:", n * 2)  # Decimal 42 * 1 == base 3 10010
+print("n:    ", n)      #  "1120" (Decimal 42     == base 3  1120)
+print("n + 1:", n + 1)  #  "1121" (Decimal 42 + 1 == base 3  1121)
+print("n - 1:", n - 1)  #  "1112" (Decimal 42 - 1 == base 3  1112)
+print("n / 2:", n / 2)  #   "210" (Decimal 42 / 2 == base 3   210)
+print("n * 2:", n * 2)  # "10010" (Decimal 42 * 1 == base 3 10010)
 
 n = Base3("212")        # Create the base 3 value 212
 
-print(int(n))           # Base 3 212 == decimal 23
+print(int(n))           # "23"    (Base 3 212     == decimal 23)
 ```
 
 Need to make your own bonkers base 5 system with vowels for digits? No problem.
@@ -34,22 +34,22 @@ class Base5(Number):
 
 n = Base5(42)           # Represent decimal 42 in base 5
 
-print("n:    ", n)      # Decimal 42     == base 5 EOI
-print("n + 1:", n + 1)  # Decimal 42 + 1 == base 5 EOO
-print("n - 1:", n - 1)  # Decimal 42 - 1 == base 5 EOE
-print("n / 2:", n / 2)  # Decimal 42 / 2 == base 5  UE
-print("n * 2:", n * 2)  # Decimal 42 * 2 == base 5 OEU
+print("n:    ", n)      # "EOI" (Decimal 42     == base 5 EOI)
+print("n + 1:", n + 1)  # "EOO" (Decimal 42 + 1 == base 5 EOO)
+print("n - 1:", n - 1)  # "EOE" (Decimal 42 - 1 == base 5 EOE)
+print("n / 2:", n / 2)  #  "UE" (Decimal 42 / 2 == base 5  UE)
+print("n * 2:", n * 2)  # "OEU" (Decimal 42 * 2 == base 5 OEU)
 
 n = Base5("OOO")        # Create the base 5 value OOO
 
-print(int(n))           # Base 5 OOO == decimal 93
+print(int(n))           # "93"  (Base 5 OOO     == decimal 93)
 ```
 
 A [`Number`](https://rebelbase.dev/number/) can be [created](https://rebelbase.dev/create/) with [optional zero support](https://rebelbase.dev/optional-zero/) for any base.
 
 Numbers can be initialised with their decimal value or string representation.
 
-Support for a ton of Python [operations](https://rebelbase.dev/number/#math-operations) -- including addition, subtraction, floor and true division, multiplication, modulo and exponentiation -- works out of the box.
+A ton of Python [operations](https://rebelbase.dev/number/#math-operations) -- including addition, subtraction, floor and true division, multiplication, modulo and exponentiation -- work out of the box.
 
 ## Installation
 
