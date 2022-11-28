@@ -26,6 +26,17 @@ To construct a `Number`, either:
     # 22
     ```
 
+## String representation
+
+Cast a `Number` to a string to get a representation of its base value. For example, to cast a base 2 number to a series of `0` and `1`:
+
+```python
+from rebelbase import Base2
+
+print(Base2(12))
+# 1100
+```
+
 ## Math operations
 
 ### Absolute value
@@ -164,4 +175,20 @@ print(n * Base3("10"))
 print(n * "11")
 print(n * 3)
 # 11000
+```
+
+### Subtraction
+
+Subtracting a float, integer, string or `Number` from a `Number` (or vice versa) will return a new `Number` with subtracted value, even if the bases are different:
+
+```python
+from rebelbase import Base2, Base3
+
+a = Base2(17)
+
+print(a - Base2(3))
+print(a - Base3("10"))
+print(a - "11")
+print(a - 3)
+# 1110
 ```
