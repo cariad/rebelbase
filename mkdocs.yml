@@ -5,6 +5,8 @@ markdown_extensions:
 nav:
   - index.md
   - number.md
+  - create.md
+  - optional_zero.md
 
 site_name: RebelBase
 site_url: https://cariad.github.io/rebelbase/
