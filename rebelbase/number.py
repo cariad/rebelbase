@@ -1,6 +1,6 @@
 from abc import ABC, abstractmethod
 from math import modf
-from typing import List
+from typing import Any, List
 
 from rebelbase.log import log
 from rebelbase.value import Value
@@ -130,6 +130,27 @@ class Number(ABC):
         """
 
         return cls.__name__
+
+    @classmethod
+    def parse(cls, o: Any) -> float | int:
+        """
+        Attempts to parse `o` as a float or integer.
+
+        Raises `ValueError` if `o` cannot be parsed.
+        """
+
+        if isinstance(o, Number):
+            return o.value
+
+        if isinstance(o, str):
+            return cls(o).value
+
+        if isinstance(o, float | int):
+            return o
+
+        raise ValueError(
+            f"{cls.name()} cannot parse {repr(o)} ({o.__class__.__name__})"
+        )
 
     @property
     def value(self) -> float | int:
