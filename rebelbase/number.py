@@ -27,6 +27,9 @@ class Number(ABC):
     def __abs__(self) -> "Number":
         return self.__class__(abs(self._value))
 
+    def __rsub__(self, other: Any) -> "Number":
+        return self.__class__(self.parse(other) - self._value)
+
     def __str__(self) -> str:
         """
         Converts the value to a string.
@@ -52,6 +55,9 @@ class Number(ABC):
             bits.extend([str(digits[x]) for x in v.fractional])
 
         return "".join(bits)
+
+    def __sub__(self, other: Any) -> "Number":
+        return self.__class__(self._value - self.parse(other))
 
     @classmethod
     def base(cls) -> int:
