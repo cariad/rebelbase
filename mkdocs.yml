@@ -7,10 +7,7 @@ nav:
   - number.md
   - create.md
   - optional-zero.md
-  - Bases:
-      - base2.md
-      - base3.md
-      - base26c.md
+  - bases.md
 
 site_name: RebelBase
 site_url: https://rebelbase.dev/

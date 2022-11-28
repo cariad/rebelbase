@@ -47,7 +47,13 @@ setup(
     package_data={
         "rebelbase": ["py.typed"],
     },
+    project_urls={
+        "Documentation": "https://rebelbase.dev",
+        "Funding": "https://github.com/sponsors/cariad",
+        "Issues": "https://github.com/cariad/rebelbase/issues",
+        "Source": "https://github.com/cariad/rebelbase",
+    },
     python_requires=">=3.9",
-    url="https://github.com/cariad/rebelbase",
+    url="https://rebelbase.dev",
     version=curr_version,
 )
