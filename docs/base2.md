@@ -1,6 +1,6 @@
 # Base2 class
 
-The `Base2` class extends and simplifies [the `Number` class](./number.md) to represent base 2 numbers.
+The `Base2` class wraps and extends the [`Number` class](./number.md) to represent base 2 numbers.
 
 ```python
 from rebelbase import Base2
