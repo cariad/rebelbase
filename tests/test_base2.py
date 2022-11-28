@@ -1,4 +1,4 @@
-from pytest import mark
+from pytest import mark, raises
 
 from rebelbase import Base2, Value
 
@@ -29,6 +29,29 @@ def test_init__string(value: str, expect: float) -> None:
 
 def test_init__value() -> None:
     assert Base2(Value(2, integral=(1, 0, 1))).value == 5
+
+
+def test_parse__fail() -> None:
+    with raises(ValueError) as ex:
+        assert Base2.parse((0, 0))
+
+    assert str(ex.value) == "Base2 cannot parse (0, 0) (tuple)"
+
+
+def test_parse__float() -> None:
+    assert Base2.parse(9.5) == 9.5
+
+
+def test_parse__int() -> None:
+    assert Base2.parse(9) == 9
+
+
+def test_parse__number() -> None:
+    assert Base2.parse(Base2(9)) == 9
+
+
+def test_parse__string() -> None:
+    assert Base2.parse("1001") == 9
 
 
 @mark.parametrize(
