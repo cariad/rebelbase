@@ -33,8 +33,14 @@ class Number(ABC):
     def __eq__(self, other: Any) -> bool:
         return self._value == self.parse(other)
 
+    def __float__(self) -> float:
+        return float(self._value)
+
     def __floordiv__(self, other: Any) -> "Number":
         return self.__class__(self._value // self.parse(other))
+
+    def __int__(self) -> int:
+        return int(self._value)
 
     def __mod__(self, other: Any) -> "Number":
         return self.__class__(self._value % self.parse(other))
