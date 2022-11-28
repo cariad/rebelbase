@@ -1,10 +1,10 @@
-# Creating a new numeric base
+# Creating a new base
 
 ## A basic base
 
-To create a new numeric base, extend `Number` and add a `digits` class method that returns the digits of the base in ascending value order.
+To create a new numeric base, extend the [`Number` class](./number.md) and implement the abstract `digits` class method to return the digits of the base in ascending value order.
 
-For example, the base 4 system looks like this:
+For example, a base 4 system would look something like this:
 
 ```python
 from rebelbase import Number
@@ -15,33 +15,20 @@ class Base4(Number):
         return ("0", "1", "2", "3")
 ```
 
-The class can be used immediately:
-
-```python
-n = Base4(6)
-print(n)
-# 12
-```
-
 ## Custom string representation
 
 By default, numbers are represented with a `-` to indicate negativity and a `.` to seperate the integral and fractional parts.
 
 ```python
-print(Base4(-7))
-# -13
-
-print(Base4(7.75))
-# 13.3
+print(Base4(-7))    # Decimal -7    == base 4 -13
+print(Base4(7.75))  # Decimal  7.75 == base 4  13.3
 ```
 
-To customise the string representation, override `__str__` and `from_string`.
+To customise the string representation, override the `to_string` and `from_string` functions.
 
 For example, to always include a sign symbol and to separate the fractional digits with a comma instead:
 
 ```python
-from typing import List
-
 from rebelbase import Number, Value
 
 class Base4(Number):
@@ -49,78 +36,59 @@ class Base4(Number):
     def digits(cls) -> tuple[str, ...]:
         return ("0", "1", "2", "3")
 
-    def __str__(self) -> str:
-        v = self.values
-
-        bits: List[str] = [
-            "+" if v.positive else "-"
-        ]
-
-        digits = self.digits()
-
-        if v.integral:
-            bits.extend([str(digits[x]) for x in v.integral])
-        else:
-            bits.append(str(digits[0]))
-
-        if v.fractional:
-            bits.append(",")
-            bits.extend([str(digits[x]) for x in v.fractional])
-
-        return "".join(bits)
-
     @classmethod
     def from_string(cls, v: str) -> Value:
         if not v:
             return Value(cls.base())
 
-        positive = v[0] == "+"
-        v = v[1:]
+        positive = not v[0] == "-"
 
-        dot_index = v.find(",")
+        if v[0] in ("+", "-"):
+            v = v[1:]
 
-        if dot_index > 0:
-            integral_string = v[:dot_index]
-            fractional_string = v[dot_index + 1:]
-        else:
-            integral_string = v
-            fractional_string = None
+        dot = v.find(",")
 
-        digits = cls.digits()
+        integral_digits = v[:dot] if dot > 0 else v
+        integral_bits = [cls.value_of_digit(d) for d in integral_digits]
 
-        integral_bits: List[int] = []
-        for digit in integral_string:
-            digit_value = digits.index(digit)
-            integral_bits.append(digit_value)
-
-        fractional_bits: List[int] = []
-        if fractional_string:
-            for fv in fractional_string:
-                fractional_bits.append(digits.index(fv))
+        fractional_digits = v[dot + 1:] if dot > 0 else ""
+        fractional_bits = [cls.value_of_digit(d) for d in fractional_digits]
 
         return Value(cls.base(), positive, integral_bits, fractional_bits)
 
+    def to_string(self, v: Value) -> str:
+        bits = ["+" if v.positive else "-"]
 
-print(Base4(-7))
-# -13
+        if v.integral:
+            bits.extend([self.digit_for_value(x) for x in v.integral])
+        else:
+            bits.append(self.digit_for_value(0))
 
-print(Base4(7.75))
-# +13,3
+        if v.fractional:
+            bits.append(",")
+            bits.extend([self.digit_for_value(x) for x in v.fractional])
 
-n = Base4("+11")
-print(int(n))
-# 5
+        return "".join(bits)
 
-n = Base4("+3,12")
-print(float(n))
-# 3.375
+
+print(Base4(-7))             # Decimal -7    == base 4 -13
+print(Base4(7.75))           # Decimal  7.75 == base 4 +13,3
+print(int(Base4("+11")))     # Base 4 +11    == decimal  5
+print(float(Base4("+3,12"))) # Base 4  +3,12 == decimal  3.375
 ```
 
-The `Value` class describes a number by recording its base and series of bits as tuples. The `.digits()` tuple is used to translate between digits and decimal values.
+The `Value` class describes a number by its:
+
+- Base as an integer decimal.
+- Sign; `True` indicates a positive value.
+- Tuple of integral digit values, from most-significant on the left to least-significant on the right. For example, an integral value represented by `1023` would be recorded as `(1, 0, 2, 3)`.
+- Tuple of fractional digit values, from most-significant on the left to least-significant on the right. For example, a fractional value represented by `7012` would be recorded as `(7, 0, 1, 2)`.
+
+The `value_of_digit()` function returns the integer bit value of the passed digit. Respectively, `digit_for_value()` returns the digit for any passed integer bit value.
 
 ## Numeric bases without zero
 
-If your numeric base won't support zero then override `supports_zero` to return `False`.
+If your base won't support zero then override `supports_zero` to return `False` and don't return a zero digit from `digits`.
 
 ```python
 from rebelbase import Number

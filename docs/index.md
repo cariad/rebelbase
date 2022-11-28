@@ -1,6 +1,6 @@
 # RebelBase
 
-**RebelBase** is a Python package for working with numbers of different bases.
+**RebelBase** is a Python package for working with numbers of any base.
 
 ## What does RebelBase do?
 
@@ -9,19 +9,17 @@ Want to work with base 3 numbers? We've got you covered.
 ```python
 from rebelbase import Base3
 
-# Create the base 3 value of decimal 42:
-n = Base3(42)
+n = Base3(42)           # Represent decimal 42 in base 3
 
-print("n:    ", n)      #  1120
-print("n + 1:", n + 1)  #  1121
-print("n - 1:", n - 1)  #  1112
-print("n / 2:", n / 2)  #   210
-print("n * 2:", n * 2)  # 10010
+print("n:    ", n)      # Decimal 42     == base 3  1120
+print("n + 1:", n + 1)  # Decimal 42 + 1 == base 3  1121
+print("n - 1:", n - 1)  # Decimal 42 - 1 == base 3  1112
+print("n / 2:", n / 2)  # Decimal 42 / 2 == base 3   210
+print("n * 2:", n * 2)  # Decimal 42 * 1 == base 3 10010
 
-# Create the base 3 value 212:
-n = Base3("212")
+n = Base3("212")        # Create the base 3 value 212
 
-print(int(n))           #    23
+print(int(n))           # Base 3 212 == decimal 23
 ```
 
 Need to make your own bonkers base 5 system with vowels for digits? No problem.
@@ -29,28 +27,25 @@ Need to make your own bonkers base 5 system with vowels for digits? No problem.
 ```python
 from rebelbase.number import Number
 
-
 class Base5(Number):
     @classmethod
     def digits(cls) -> tuple[str, ...]:
         return ("A", "E", "I", "O", "U")
 
-# Create the base 5 value of decimal 42:
-n = Base5(42)
+n = Base5(42)           # Represent decimal 42 in base 5
 
-print("n:    ", n)      # EOI
-print("n + 1:", n + 1)  # EOO
-print("n - 1:", n - 1)  # EOE
-print("n / 2:", n / 2)  #  UE
-print("n * 2:", n * 2)  # OEU
+print("n:    ", n)      # Decimal 42     == base 5 EOI
+print("n + 1:", n + 1)  # Decimal 42 + 1 == base 5 EOO
+print("n - 1:", n - 1)  # Decimal 42 - 1 == base 5 EOE
+print("n / 2:", n / 2)  # Decimal 42 / 2 == base 5  UE
+print("n * 2:", n * 2)  # Decimal 42 * 2 == base 5 OEU
 
-# Create the base 5 value OOO:
-n = Base5("OOO")
+n = Base5("OOO")        # Create the base 5 value OOO
 
-print(int(n))           #  93
+print(int(n))           # Base 5 OOO == decimal 93
 ```
 
-A [`rebelbase.Number`](https://rebelbase.dev/number/) can be [created](https://rebelbase.dev/create/) with [optional zero support](https://rebelbase.dev/optional-zero/) for any base.
+A [`Number`](https://rebelbase.dev/number/) can be [created](https://rebelbase.dev/create/) with [optional zero support](https://rebelbase.dev/optional-zero/) for any base.
 
 Numbers can be initialised with their decimal value or string representation.
 
@@ -71,8 +66,6 @@ Please raise bugs, request new features and ask questions at [github.com/cariad/
 ## Contributions
 
 See [CONTRIBUTING.md](https://github.com/cariad/rebelbase/blob/main/CONTRIBUTING.md) for contribution guidelines.
-
-In a nutshell: bugs and feature requests are gratefully received at [github.com/cariad/rebelbase/issues](https://github.com/cariad/rebelbase/issues) and I don't accept unplanned pull requests.
 
 ## The Project
 

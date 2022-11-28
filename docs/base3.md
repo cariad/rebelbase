@@ -1,6 +1,6 @@
 # Base3 class
 
-The `Base3` class extends and simplifies [the `Number` class](./number.md) to represent base 3 numbers.
+The `Base3` class wraps and extends the [`Number` class](./number.md) to represent base 3 numbers.
 
 ```python
 from rebelbase import Base3

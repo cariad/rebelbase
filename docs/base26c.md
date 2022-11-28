@@ -1,6 +1,6 @@
 # Base26C class
 
-The `Base26C` class extends and simplifies [the `Number` class](./number.md) to represent a base 26 number with continuous, non-zero representation.
+The `Base26C` class wraps and extends the [`Number` class](./number.md) to represent a base 26 number with continuous, non-zero representation.
 
 ```python
 from rebelbase import Base26C

@@ -79,25 +79,7 @@ class Number(ABC):
         Override to change the format.
         """
 
-        bits: List[str] = []
-        v = self.values
-
-        if not v.positive:
-            bits.append("-")
-
-        digits = self.digits()
-        digit_offset = 0 if self.supports_zero() else -1
-
-        if v.integral:
-            bits.extend([str(digits[x + digit_offset]) for x in v.integral])
-        else:
-            bits.append(str(digits[0]))
-
-        if v.fractional:
-            bits.append(".")
-            bits.extend([str(digits[x + digit_offset]) for x in v.fractional])
-
-        return "".join(bits)
+        return self.to_string(self.values)
 
     def __sub__(self, other: Any) -> "Number":
         return self.__class__(self._value - self.parse(other))
@@ -114,6 +96,15 @@ class Number(ABC):
         return len(cls.digits())
 
     @classmethod
+    def digit_for_value(cls, v: int) -> str:
+        """
+        Gets the digit that represents the integer value `v`.
+        """
+
+        offset = 0 if cls.supports_zero() else -1
+        return cls.digits()[v + offset]
+
+    @classmethod
     @abstractmethod
     def digits(cls) -> tuple[str, ...]:
         """
@@ -128,39 +119,21 @@ class Number(ABC):
         Override this function to provide a custom translation.
         """
 
-        positive = True
-
         if not v:
             return Value(cls.base())
 
-        if v[0] == "-":
-            positive = False
+        positive = not v[0] == "-"
+
+        if v[0] in ("+", "-"):
             v = v[1:]
 
-        dot_index = v.find(".")
+        dot = v.find(".")
 
-        if dot_index > 0:
-            integral_string = v[:dot_index]
-            fractional_string = v[dot_index + 1 :]  # noqa: E203
-        else:
-            integral_string = v
-            fractional_string = None
+        integral_digits = v[:dot] if dot > 0 else v
+        integral_bits = [cls.value_of_digit(d) for d in integral_digits]
 
-        digits = cls.digits()
-        digit_offset = 0 if cls.supports_zero() else 1
-
-        integral_bits: List[int] = []
-        for digit in integral_string:
-            digit_value = digits.index(digit) + digit_offset
-            log.debug("Digit %s has value %s", digit, digit_value)
-            integral_bits.append(digit_value)
-
-        log.debug("Integral bits: %s", integral_bits)
-
-        fractional_bits: List[int] = []
-        if fractional_string:
-            for fv in fractional_string:
-                fractional_bits.append(digits.index(fv) + digit_offset)
+        fractional_digits = v[dot + 1 :] if dot > 0 else ""  # noqa: E203
+        fractional_bits = [cls.value_of_digit(d) for d in fractional_digits]
 
         return Value(cls.base(), positive, integral_bits, fractional_bits)
 
@@ -201,6 +174,29 @@ class Number(ABC):
 
         return True
 
+    def to_string(self, v: Value) -> str:
+        """
+        Converts the value `v` to a string.
+
+        Override to change the format.
+        """
+
+        bits: List[str] = []
+
+        if not v.positive:
+            bits.append("-")
+
+        if v.integral:
+            bits.extend([self.digit_for_value(x) for x in v.integral])
+        else:
+            bits.append(self.digit_for_value(0))
+
+        if v.fractional:
+            bits.append(".")
+            bits.extend([self.digit_for_value(x) for x in v.fractional])
+
+        return "".join(bits)
+
     @property
     def value(self) -> float | int:
         """
@@ -208,6 +204,11 @@ class Number(ABC):
         """
 
         return self._value
+
+    @classmethod
+    def value_of_digit(cls, digit: str) -> int:
+        offset = 0 if cls.supports_zero() else 1
+        return cls.digits().index(digit) + offset
 
     @property
     def values(self) -> "Value":
