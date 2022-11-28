@@ -90,3 +90,11 @@ def test_parse__string() -> None:
 def test_str(value: float, expect: str) -> None:
     b = Base2(value)
     assert str(b) == expect
+
+
+def test_subtract() -> None:
+    assert Base2(9) - 4 == 5
+
+
+def test_subtract__reverse() -> None:
+    assert 4 - Base2(9) == -5
