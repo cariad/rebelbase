@@ -33,8 +33,17 @@ class Number(ABC):
     def __eq__(self, other: Any) -> bool:
         return self._value == self.parse(other)
 
+    def __floordiv__(self, other: Any) -> "Number":
+        return self.__class__(self._value // self.parse(other))
+
     def __radd__(self, other: Any) -> "Number":
         return self.__class__(self.parse(other) + self._value)
+
+    def __rfloordiv__(self, other: Any) -> "Number":
+        return self.__class__(self.parse(other) // self._value)
+
+    def __rtruediv__(self, other: Any) -> "Number":
+        return self.__class__(self.parse(other) / self._value)
 
     def __str__(self) -> str:
         """
@@ -61,6 +70,9 @@ class Number(ABC):
             bits.extend([str(digits[x]) for x in v.fractional])
 
         return "".join(bits)
+
+    def __truediv__(self, other: Any) -> "Number":
+        return self.__class__(self._value / self.parse(other))
 
     @classmethod
     def base(cls) -> int:
