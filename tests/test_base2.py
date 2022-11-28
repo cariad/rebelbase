@@ -31,6 +31,14 @@ def test_add_string() -> None:
     assert Base2(2) + "11" == 5
 
 
+def test_floor_division() -> None:
+    assert Base2(9) // 2 == 4
+
+
+def test_floor_division__reverse() -> None:
+    assert 13 // Base2(6) == 2
+
+
 @mark.parametrize(
     "value, expect",
     [
@@ -98,3 +106,11 @@ def test_subtract() -> None:
 
 def test_subtract__reverse() -> None:
     assert 4 - Base2(9) == -5
+
+
+def test_true_division() -> None:
+    assert Base2(9) / 2 == 4.5
+
+
+def test_true_division__reverse() -> None:
+    assert 15 / Base2(6) == 2.5
