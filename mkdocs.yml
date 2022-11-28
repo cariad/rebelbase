@@ -7,9 +7,13 @@ nav:
   - number.md
   - create.md
   - optional_zero.md
+  - Bases:
+      - base2.md
+      - base3.md
+      - base26c.md
 
 site_name: RebelBase
-site_url: https://cariad.github.io/rebelbase/
+site_url: https://rebelbase.dev/
 
 theme:
   name: material

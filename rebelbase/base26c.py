@@ -1,7 +1,7 @@
 from rebelbase.number import Number
 
 
-class Base26Continuous(Number):
+class Base26C(Number):
     """
     A base 26 number that supports continuous sequences; for example: A, B,
     C...X, Y, Z, AA, AB, AC...ZX, ZY, ZZ, AAA, AAB...
