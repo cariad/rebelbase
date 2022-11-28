@@ -1,6 +1,6 @@
 # RebelBase
 
-**RebelBase** is a Python package for working with numbers of different bases.
+**RebelBase** is a Python package for working with numbers of any base.
 
 ## What does RebelBase do?
 

@@ -2,7 +2,7 @@
 
 [![codecov](https://codecov.io/gh/cariad/rebelbase/branch/main/graph/badge.svg?token=3YgEtYwvmb)](https://codecov.io/gh/cariad/rebelbase)
 
-**RebelBase** is a Python package for working with numbers of different bases.
+**RebelBase** is a Python package for working with numbers of any base.
 
 Full documentation is online at **[rebelbase.dev](https://rebelbase.dev)**.
 
