@@ -24,6 +24,15 @@ class Number(ABC):
 
         log.debug("Initialised %s with %s", self.name(), self._value)
 
+    def __add__(self, other: Any) -> "Number":
+        return self.__class__(self._value + self.parse(other))
+
+    def __eq__(self, other: Any) -> bool:
+        return self._value == self.parse(other)
+
+    def __radd__(self, other: Any) -> "Number":
+        return self.__class__(self.parse(other) + self._value)
+
     def __str__(self) -> str:
         """
         Converts the value to a string.
