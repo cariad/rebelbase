@@ -36,11 +36,23 @@ class Number(ABC):
     def __floordiv__(self, other: Any) -> "Number":
         return self.__class__(self._value // self.parse(other))
 
+    def __mod__(self, other: Any) -> "Number":
+        return self.__class__(self._value % self.parse(other))
+
+    def __mul__(self, other: Any) -> "Number":
+        return self.__class__(self._value * self.parse(other))
+
     def __radd__(self, other: Any) -> "Number":
         return self.__class__(self.parse(other) + self._value)
 
     def __rfloordiv__(self, other: Any) -> "Number":
         return self.__class__(self.parse(other) // self._value)
+
+    def __rmod__(self, other: Any) -> "Number":
+        return self.__class__(self.parse(other) % self._value)
+
+    def __rmul__(self, other: Any) -> "Number":
+        return self.__class__(self.parse(other) * self._value)
 
     def __rsub__(self, other: Any) -> "Number":
         return self.__class__(self.parse(other) - self._value)
