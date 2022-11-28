@@ -11,6 +11,26 @@ def test_abs__idempotent() -> None:
     assert abs(Base2(9)).value == 9
 
 
+def test_add_float() -> None:
+    assert Base2(2) + 3.5 == 5.5
+
+
+def test_add_int() -> None:
+    assert Base2(2) + 3 == 5
+
+
+def test_add_int__reverse() -> None:
+    assert 3 + Base2(2) == 5
+
+
+def test_add_number() -> None:
+    assert Base2(2) + Base2(3) == 5
+
+
+def test_add_string() -> None:
+    assert Base2(2) + "11" == 5
+
+
 @mark.parametrize(
     "value, expect",
     [
