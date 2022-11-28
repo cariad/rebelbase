@@ -98,6 +98,14 @@ def test_parse__string() -> None:
     assert Base2.parse("1001") == 9
 
 
+def test_pow() -> None:
+    assert pow(Base2(3), 2) == 9
+
+
+def test_pow__reverse() -> None:
+    assert pow(2, Base2(3)) == 8
+
+
 @mark.parametrize(
     "value, expect",
     [

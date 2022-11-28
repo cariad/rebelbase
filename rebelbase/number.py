@@ -42,6 +42,9 @@ class Number(ABC):
     def __mul__(self, other: Any) -> "Number":
         return self.__class__(self._value * self.parse(other))
 
+    def __pow__(self, other: Any) -> "Number":
+        return self.__class__(pow(self._value, self.parse(other)))
+
     def __radd__(self, other: Any) -> "Number":
         return self.__class__(self.parse(other) + self._value)
 
@@ -53,6 +56,9 @@ class Number(ABC):
 
     def __rmul__(self, other: Any) -> "Number":
         return self.__class__(self.parse(other) * self._value)
+
+    def __rpow__(self, other: Any) -> "Number":
+        return self.__class__(pow(self.parse(other), self._value))
 
     def __rsub__(self, other: Any) -> "Number":
         return self.__class__(self.parse(other) - self._value)
