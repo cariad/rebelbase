@@ -2,6 +2,14 @@
 
 **RebelBase** is a Python package for working with numbers of different bases.
 
+## Installation
+
+**RebelBase** requires Python 3.9 or later.
+
+```console
+pip install rebelbase
+```
+
 ## Support
 
 Please raise bugs, feature requests and ask questions at [cariad/rebelbase/issues](https://github.com/cariad/rebelbase/issues).

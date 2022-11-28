@@ -1,6 +1,6 @@
 from pytest import mark, raises
 
-from rebelbase import Base26Continuous, Value
+from rebelbase import Base26C, Value
 
 
 @mark.parametrize(
@@ -50,15 +50,15 @@ from rebelbase import Base26Continuous, Value
     ],
 )
 def test_str(value: float, expect: str) -> None:
-    b = Base26Continuous(value)
+    b = Base26C(value)
     assert str(b) == expect
 
 
 def test_str__zero() -> None:
     with raises(ValueError) as ex:
-        _ = Base26Continuous(0)
+        _ = Base26C(0)
 
-    assert str(ex.value) == "Base26Continuous cannot represent zero"
+    assert str(ex.value) == "Base26C cannot represent zero"
 
 
 @mark.parametrize(
@@ -78,4 +78,4 @@ def test_str__zero() -> None:
     ],
 )
 def test_make_value(value: str, expect: Value) -> None:
-    assert Base26Continuous.from_string(value) == expect
+    assert Base26C.from_string(value) == expect
