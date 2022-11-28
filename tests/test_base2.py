@@ -59,6 +59,14 @@ def test_init__value() -> None:
     assert Base2(Value(2, integral=(1, 0, 1))).value == 5
 
 
+def test_mod() -> None:
+    assert Base2(9) % 2 == 1
+
+
+def test_mod__reverse() -> None:
+    assert 9 % Base2(4) == 1
+
+
 def test_multiply() -> None:
     assert Base2(9) * 3 == 27
 
