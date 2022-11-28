@@ -40,11 +40,11 @@ print(Base2(12))
 ## Class functions
 
 - `.base()` gets the base of the number. For example, `10` to indicate a base 10 number.
-- `.can_represent_zero()` indicates whether or not the number's numeric system can represent zero.
 - `.digits()` gets a tuple of the digits that make up the number's numeric system.
 - `.from_string()` converts a string to internal value representation.
 - `.name()` gets the name of the number's numeric system.
 - `.parse()` attempts to parse any given object into a float or integer value.
+- `.supports_zero()` indicates whether or not the number's numeric system can represent zero.
 
 ## Properties
 

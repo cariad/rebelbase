@@ -19,7 +19,7 @@ class Number(ABC):
         else:
             self._value = value.float
 
-        if self._value == 0 and not self.can_represent_zero():
+        if self._value == 0 and not self.supports_zero():
             raise ValueError(f"{self.name()} cannot represent zero")
 
         log.debug("Initialised %s with %s", self.name(), self._value)
@@ -86,15 +86,16 @@ class Number(ABC):
             bits.append("-")
 
         digits = self.digits()
+        digit_offset = 0 if self.supports_zero() else -1
 
         if v.integral:
-            bits.extend([str(digits[x]) for x in v.integral])
+            bits.extend([str(digits[x + digit_offset]) for x in v.integral])
         else:
             bits.append(str(digits[0]))
 
         if v.fractional:
             bits.append(".")
-            bits.extend([str(digits[x]) for x in v.fractional])
+            bits.extend([str(digits[x + digit_offset]) for x in v.fractional])
 
         return "".join(bits)
 
@@ -110,22 +111,7 @@ class Number(ABC):
         Gets the base of this number.
         """
 
-        base = len(cls.digits())
-
-        if not cls.can_represent_zero():
-            # If this number can't represent zero then the first digit will
-            # be a placeholder and shouldn't be counted.
-            base -= 1
-
-        return base
-
-    @classmethod
-    def can_represent_zero(cls) -> bool:
-        """
-        Indicates whether or not this numeric system can represent zero.
-        """
-
-        return True
+        return len(cls.digits())
 
     @classmethod
     @abstractmethod
@@ -161,10 +147,11 @@ class Number(ABC):
             fractional_string = None
 
         digits = cls.digits()
+        digit_offset = 0 if cls.supports_zero() else 1
 
         integral_bits: List[int] = []
         for digit in integral_string:
-            digit_value = digits.index(digit)
+            digit_value = digits.index(digit) + digit_offset
             log.debug("Digit %s has value %s", digit, digit_value)
             integral_bits.append(digit_value)
 
@@ -173,7 +160,7 @@ class Number(ABC):
         fractional_bits: List[int] = []
         if fractional_string:
             for fv in fractional_string:
-                fractional_bits.append(digits.index(fv))
+                fractional_bits.append(digits.index(fv) + digit_offset)
 
         return Value(cls.base(), positive, integral_bits, fractional_bits)
 
@@ -206,6 +193,14 @@ class Number(ABC):
             f"{cls.name()} cannot parse {repr(o)} ({o.__class__.__name__})"
         )
 
+    @classmethod
+    def supports_zero(cls) -> bool:
+        """
+        Indicates whether or not this numeric system can represent zero.
+        """
+
+        return True
+
     @property
     def value(self) -> float | int:
         """
@@ -233,7 +228,7 @@ class Number(ABC):
         while quotient > 0:
             remainder = quotient % base
             quotient = quotient // base
-            if remainder == 0 and not self.can_represent_zero():
+            if remainder == 0 and not self.supports_zero():
                 remainder = base
                 quotient -= 1
             int_bits.append(remainder)

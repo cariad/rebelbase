@@ -120,19 +120,19 @@ The `Value` class describes a number by recording its base and series of bits as
 
 ## Numeric bases without zero
 
-If your numeric base won't support zero then override `can_represent_zero` to return `False`.
+If your numeric base won't support zero then override `supports_zero` to return `False`.
 
 ```python
 from rebelbase import Number
 
 class Base4(Number):
     @classmethod
-    def can_represent_zero(cls) -> bool:
-        return False
+    def digits(cls) -> tuple[str, ...]:
+        return ("1", "2", "3")
 
     @classmethod
-    def digits(cls) -> tuple[str, ...]:
-        return ("0", "1", "2", "3")
+    def supports_zero(cls) -> bool:
+        return False
 ```
 
-See [optional zero representation](./optional_zero.md) for more information about why you might want to do this.
+See [optional zero support](./optional_zero.md) for more information about why you might want to do this.
