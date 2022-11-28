@@ -135,4 +135,4 @@ class Base4(Number):
         return False
 ```
 
-See [optional zero support](./optional_zero.md) for more information about why you might want to do this.
+See [optional zero support](./optional-zero.md) for more information about why you might want to do this.
