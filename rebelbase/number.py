@@ -42,6 +42,9 @@ class Number(ABC):
     def __rfloordiv__(self, other: Any) -> "Number":
         return self.__class__(self.parse(other) // self._value)
 
+    def __rsub__(self, other: Any) -> "Number":
+        return self.__class__(self.parse(other) - self._value)
+
     def __rtruediv__(self, other: Any) -> "Number":
         return self.__class__(self.parse(other) / self._value)
 
@@ -70,6 +73,9 @@ class Number(ABC):
             bits.extend([str(digits[x]) for x in v.fractional])
 
         return "".join(bits)
+
+    def __sub__(self, other: Any) -> "Number":
+        return self.__class__(self._value - self.parse(other))
 
     def __truediv__(self, other: Any) -> "Number":
         return self.__class__(self._value / self.parse(other))

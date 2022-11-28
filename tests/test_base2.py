@@ -100,6 +100,14 @@ def test_str(value: float, expect: str) -> None:
     assert str(b) == expect
 
 
+def test_subtract() -> None:
+    assert Base2(9) - 4 == 5
+
+
+def test_subtract__reverse() -> None:
+    assert 4 - Base2(9) == -5
+
+
 def test_true_division() -> None:
     assert Base2(9) / 2 == 4.5
 
