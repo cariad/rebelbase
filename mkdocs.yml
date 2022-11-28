@@ -1,0 +1,12 @@
+site_name: RebelBase
+site_url: https://cariad.github.io/rebelbase/
+
+markdown_extensions:
+  - pymdownx.highlight
+  - pymdownx.superfences
+
+nav:
+  - index.md
+
+theme:
+  name: material
