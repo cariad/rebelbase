@@ -3,6 +3,14 @@ from pytest import mark, raises
 from rebelbase import Base2, Value
 
 
+def test_abs() -> None:
+    assert abs(Base2(-9)).value == 9
+
+
+def test_abs__idempotent() -> None:
+    assert abs(Base2(9)).value == 9
+
+
 def test_add_float() -> None:
     assert Base2(2) + 3.5 == 5.5
 

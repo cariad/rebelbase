@@ -24,6 +24,9 @@ class Number(ABC):
 
         log.debug("Initialised %s with %s", self.name(), self._value)
 
+    def __abs__(self) -> "Number":
+        return self.__class__(abs(self._value))
+
     def __add__(self, other: Any) -> "Number":
         return self.__class__(self._value + self.parse(other))
 
