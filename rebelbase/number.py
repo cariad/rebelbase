@@ -1,6 +1,6 @@
 from abc import ABC, abstractmethod
 from math import modf
-from typing import Any, List
+from typing import Any, List, TypeVar
 
 from rebelbase.log import log
 from rebelbase.value import Value
@@ -24,10 +24,10 @@ class Number(ABC):
 
         log.debug("Initialised %s with %s", self.name(), self._value)
 
-    def __abs__(self) -> "Number":
+    def __abs__(self: "TNumber") -> "TNumber":
         return self.__class__(abs(self._value))
 
-    def __add__(self, other: Any) -> "Number":
+    def __add__(self: "TNumber", other: Any) -> "TNumber":
         return self.__class__(self._value + self.parse(other))
 
     def __eq__(self, other: Any) -> bool:
@@ -36,40 +36,40 @@ class Number(ABC):
     def __float__(self) -> float:
         return float(self._value)
 
-    def __floordiv__(self, other: Any) -> "Number":
+    def __floordiv__(self: "TNumber", other: Any) -> "TNumber":
         return self.__class__(self._value // self.parse(other))
 
     def __int__(self) -> int:
         return int(self._value)
 
-    def __mod__(self, other: Any) -> "Number":
+    def __mod__(self: "TNumber", other: Any) -> "TNumber":
         return self.__class__(self._value % self.parse(other))
 
-    def __mul__(self, other: Any) -> "Number":
+    def __mul__(self: "TNumber", other: Any) -> "TNumber":
         return self.__class__(self._value * self.parse(other))
 
-    def __pow__(self, other: Any) -> "Number":
+    def __pow__(self: "TNumber", other: Any) -> "TNumber":
         return self.__class__(pow(self._value, self.parse(other)))
 
-    def __radd__(self, other: Any) -> "Number":
+    def __radd__(self: "TNumber", other: Any) -> "TNumber":
         return self.__class__(self.parse(other) + self._value)
 
-    def __rfloordiv__(self, other: Any) -> "Number":
+    def __rfloordiv__(self: "TNumber", other: Any) -> "TNumber":
         return self.__class__(self.parse(other) // self._value)
 
-    def __rmod__(self, other: Any) -> "Number":
+    def __rmod__(self: "TNumber", other: Any) -> "TNumber":
         return self.__class__(self.parse(other) % self._value)
 
-    def __rmul__(self, other: Any) -> "Number":
+    def __rmul__(self: "TNumber", other: Any) -> "TNumber":
         return self.__class__(self.parse(other) * self._value)
 
-    def __rpow__(self, other: Any) -> "Number":
+    def __rpow__(self: "TNumber", other: Any) -> "TNumber":
         return self.__class__(pow(self.parse(other), self._value))
 
-    def __rsub__(self, other: Any) -> "Number":
+    def __rsub__(self: "TNumber", other: Any) -> "TNumber":
         return self.__class__(self.parse(other) - self._value)
 
-    def __rtruediv__(self, other: Any) -> "Number":
+    def __rtruediv__(self: "TNumber", other: Any) -> "TNumber":
         return self.__class__(self.parse(other) / self._value)
 
     def __str__(self) -> str:
@@ -81,10 +81,10 @@ class Number(ABC):
 
         return self.to_string(self.values)
 
-    def __sub__(self, other: Any) -> "Number":
+    def __sub__(self: "TNumber", other: Any) -> "TNumber":
         return self.__class__(self._value - self.parse(other))
 
-    def __truediv__(self, other: Any) -> "Number":
+    def __truediv__(self: "TNumber", other: Any) -> "TNumber":
         return self.__class__(self._value / self.parse(other))
 
     @classmethod
@@ -252,3 +252,6 @@ class Number(ABC):
 
         log.debug("%s == %s", self._value, value)
         return value
+
+
+TNumber = TypeVar("TNumber", bound=Number)

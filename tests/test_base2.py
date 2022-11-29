@@ -3,12 +3,20 @@ from pytest import mark, raises
 from rebelbase import Base2, Value
 
 
+def require_base2(_: Base2) -> None:
+    pass
+
+
 def test_abs() -> None:
     assert abs(Base2(-9)).value == 9
 
 
 def test_abs__idempotent() -> None:
     assert abs(Base2(9)).value == 9
+
+
+def test_abs__type() -> None:
+    require_base2(abs(Base2(-9)))
 
 
 def test_add_float() -> None:
@@ -21,6 +29,14 @@ def test_add_int() -> None:
 
 def test_add_int__reverse() -> None:
     assert 3 + Base2(2) == 5
+
+
+def test_add__int__reverse__type() -> None:
+    require_base2(3 + Base2(2))
+
+
+def test_add__int__type() -> None:
+    require_base2(Base2(2) + 3)
 
 
 def test_add_number() -> None:
@@ -37,6 +53,14 @@ def test_floor_division() -> None:
 
 def test_floor_division__reverse() -> None:
     assert 13 // Base2(6) == 2
+
+
+def test_floor_division__reverse__type() -> None:
+    require_base2(13 // Base2(6))
+
+
+def test_floor_division__type() -> None:
+    require_base2(Base2(9) // 2)
 
 
 @mark.parametrize(
@@ -67,12 +91,28 @@ def test_mod__reverse() -> None:
     assert 9 % Base2(4) == 1
 
 
+def test_mod__reverse__type() -> None:
+    require_base2(9 % Base2(4))
+
+
+def test_mod__type() -> None:
+    require_base2(Base2(9) % 2)
+
+
 def test_multiply() -> None:
     assert Base2(9) * 3 == 27
 
 
 def test_multiply__reverse() -> None:
     assert 3 * Base2(9) == 27
+
+
+def test_multiply__reverse__type() -> None:
+    require_base2(3 * Base2(9))
+
+
+def test_multiply__type() -> None:
+    require_base2(Base2(9) * 3)
 
 
 def test_parse__fail() -> None:
@@ -106,6 +146,14 @@ def test_pow__reverse() -> None:
     assert pow(2, Base2(3)) == 8
 
 
+def test_pow__reverse__type() -> None:
+    require_base2(pow(2, Base2(3)))
+
+
+def test_pow__type() -> None:
+    require_base2(pow(Base2(3), 2))
+
+
 @mark.parametrize(
     "value, expect",
     [
@@ -132,9 +180,25 @@ def test_subtract__reverse() -> None:
     assert 4 - Base2(9) == -5
 
 
+def test_subtract__reverse__type() -> None:
+    require_base2(4 - Base2(9))
+
+
+def test_subtract__type() -> None:
+    require_base2(Base2(9) - 4)
+
+
 def test_true_division() -> None:
     assert Base2(9) / 2 == 4.5
 
 
 def test_true_division__reverse() -> None:
     assert 15 / Base2(6) == 2.5
+
+
+def test_true_division__type() -> None:
+    require_base2(Base2(9) / 2)
+
+
+def test_true_division__reverse__type() -> None:
+    require_base2(15 / Base2(6))
