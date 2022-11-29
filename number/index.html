@@ -1,0 +1,777 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://rebelbase.dev/number/">
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.4.2, mkdocs-material-8.5.10">
+    
+    
+      
+        <title>Number class - RebelBase</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.472b142f.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.08040f6c.min.css">
+        
+      
+      
+
+    
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="None" data-md-color-accent="None">
+  
+    
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#number-class" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="RebelBase" class="md-header__button md-logo" aria-label="RebelBase" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            RebelBase
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Number class
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="RebelBase" class="md-nav__button md-logo" aria-label="RebelBase" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    RebelBase
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        RebelBase
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Number class
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        Number class
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#construction" class="md-nav__link">
+    Construction
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#string-representation" class="md-nav__link">
+    String representation
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#functions" class="md-nav__link">
+    Functions
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#properties" class="md-nav__link">
+    Properties
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#math-operations" class="md-nav__link">
+    Math operations
+  </a>
+  
+    <nav class="md-nav" aria-label="Math operations">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#absolute-value" class="md-nav__link">
+    Absolute value
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#addition" class="md-nav__link">
+    Addition
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#conversion-to-float" class="md-nav__link">
+    Conversion to float
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#conversion-to-integer" class="md-nav__link">
+    Conversion to integer
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#equality" class="md-nav__link">
+    Equality
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#exponentiation" class="md-nav__link">
+    Exponentiation
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#division" class="md-nav__link">
+    Division
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#modulo" class="md-nav__link">
+    Modulo
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#multiplication" class="md-nav__link">
+    Multiplication
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#subtraction" class="md-nav__link">
+    Subtraction
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../create/" class="md-nav__link">
+        Creating a new base
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../optional-zero/" class="md-nav__link">
+        Optional zero support
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../bases/" class="md-nav__link">
+        Baked-in bases
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#construction" class="md-nav__link">
+    Construction
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#string-representation" class="md-nav__link">
+    String representation
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#functions" class="md-nav__link">
+    Functions
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#properties" class="md-nav__link">
+    Properties
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#math-operations" class="md-nav__link">
+    Math operations
+  </a>
+  
+    <nav class="md-nav" aria-label="Math operations">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#absolute-value" class="md-nav__link">
+    Absolute value
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#addition" class="md-nav__link">
+    Addition
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#conversion-to-float" class="md-nav__link">
+    Conversion to float
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#conversion-to-integer" class="md-nav__link">
+    Conversion to integer
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#equality" class="md-nav__link">
+    Equality
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#exponentiation" class="md-nav__link">
+    Exponentiation
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#division" class="md-nav__link">
+    Division
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#modulo" class="md-nav__link">
+    Modulo
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#multiplication" class="md-nav__link">
+    Multiplication
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#subtraction" class="md-nav__link">
+    Subtraction
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+<h1 id="number-class">Number class</h1>
+<p>The <code>Number</code> class is the base for all numbers. All of the provided numeric classes wrap and extend this class.</p>
+<h2 id="construction">Construction</h2>
+<p>To construct a <code>Number</code>, either:</p>
+<ul>
+<li>
+<p>Pass in the decimal value as a float or integer:</p>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">rebelbase</span> <span class="kn">import</span> <span class="n">Base2</span>
+
+<span class="n">n</span> <span class="o">=</span> <span class="n">Base2</span><span class="p">(</span><span class="mi">22</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>       <span class="c1"># &quot;10110&quot; (Decimal 22 == base 2 10110)</span>
+</code></pre></div>
+</li>
+<li>
+<p>Pass in the string representation of the number in its base form:</p>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">rebelbase</span> <span class="kn">import</span> <span class="n">Base2</span>
+
+<span class="n">n</span> <span class="o">=</span> <span class="n">Base2</span><span class="p">(</span><span class="s2">&quot;10110&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">n</span><span class="p">))</span>  <span class="c1"># &quot;22&quot; (Base 2 10110 == decimal 22)</span>
+</code></pre></div>
+</li>
+</ul>
+<h2 id="string-representation">String representation</h2>
+<p>Cast a <code>Number</code> to a string to get a representation of its base value. For example, to cast a base 2 number to a series of <code>0</code> and <code>1</code>:</p>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">rebelbase</span> <span class="kn">import</span> <span class="n">Base2</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">Base2</span><span class="p">(</span><span class="mi">12</span><span class="p">))</span>  <span class="c1"># &quot;1100&quot; (Decimal 12 == base 2 1100)</span>
+</code></pre></div>
+<h2 id="functions">Functions</h2>
+<ul>
+<li><code>.base()</code> gets the base of the number. For example, <code>10</code> to indicate a base 10 number.</li>
+<li><code>.digits()</code> gets a tuple of the digits that make up the number's numeric system in ascending value order.</li>
+<li><code>.from_string()</code> converts a string to internal value representation.</li>
+<li><code>.name()</code> gets the name of the number's numeric system.</li>
+<li><code>.parse()</code> attempts to parse any given object into a float or integer value.</li>
+<li><code>.supports_zero()</code> indicates whether or not the number supports zero. See <a href="../optional-zero/">optional zero support</a> for more information about why zero might be unsupported.</li>
+<li><code>.to_string()</code> converts internal value representation to a string.</li>
+</ul>
+<h2 id="properties">Properties</h2>
+<ul>
+<li><code>.value</code> gets the decimal value as a float or int. This value can also be read by passing the <code>Number</code> into <code>float()</code> or <code>int()</code>.</li>
+<li><code>.values</code> gets the internal representation of the value.</li>
+</ul>
+<h2 id="math-operations">Math operations</h2>
+<h3 id="absolute-value">Absolute value</h3>
+<p>Given a positive or negative <code>Number</code> <em>n</em>, <code>abs(n)</code> returns a <code>Number</code> of the positive value of <em>n</em>.</p>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">rebelbase</span> <span class="kn">import</span> <span class="n">Base2</span>
+
+<span class="n">n</span> <span class="o">=</span> <span class="n">Base2</span><span class="p">(</span><span class="o">-</span><span class="mi">17</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">abs</span><span class="p">(</span><span class="n">n</span><span class="p">))</span>  <span class="c1"># &quot;10001&quot; (Decimal 17 == base 2 10001)</span>
+</code></pre></div>
+<h3 id="addition">Addition</h3>
+<p>Adding a float, integer, string or <code>Number</code> to a <code>Number</code> will return a new <code>Number</code> with the summed value, even if the bases are different:</p>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">rebelbase</span> <span class="kn">import</span> <span class="n">Base2</span><span class="p">,</span> <span class="n">Base3</span>
+
+<span class="n">a</span> <span class="o">=</span> <span class="n">Base2</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">a</span> <span class="o">+</span> <span class="n">Base2</span><span class="p">(</span><span class="mi">3</span><span class="p">))</span>     <span class="c1"># &quot;101&quot; (Base 2 10 + base 2 11 == base 2 101)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">a</span> <span class="o">+</span> <span class="n">Base3</span><span class="p">(</span><span class="s2">&quot;10&quot;</span><span class="p">))</span>  <span class="c1"># &quot;101&quot; (Base 2 10 + base 3 10 == base 2 101)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">a</span> <span class="o">+</span> <span class="s2">&quot;11&quot;</span><span class="p">)</span>         <span class="c1"># &quot;101&quot; (Base 2 10 + base 2 11 == base 2 101)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">a</span> <span class="o">+</span> <span class="mi">3</span><span class="p">)</span>            <span class="c1"># &quot;101&quot; (Base 2 10 + decimal 3 == base 2 101)</span>
+</code></pre></div>
+<h3 id="conversion-to-float">Conversion to float</h3>
+<p>Given a <code>Number</code> <em>n</em>, <code>float(n)</code> returns a <code>Number</code> of the float value of <em>n</em>.</p>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">rebelbase</span> <span class="kn">import</span> <span class="n">Base2</span>
+
+<span class="n">n</span> <span class="o">=</span> <span class="n">Base2</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">float</span><span class="p">(</span><span class="n">n</span><span class="p">))</span>  <span class="c1"># &quot;3.0&quot;</span>
+</code></pre></div>
+<h3 id="conversion-to-integer">Conversion to integer</h3>
+<p>Given a <code>Number</code> <em>n</em>, <code>int(n)</code> returns a <code>Number</code> of the int value of <em>n</em>.</p>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">rebelbase</span> <span class="kn">import</span> <span class="n">Base2</span>
+
+<span class="n">n</span> <span class="o">=</span> <span class="n">Base2</span><span class="p">(</span><span class="mf">3.4</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">n</span><span class="p">))</span>  <span class="c1"># 3</span>
+</code></pre></div>
+<h3 id="equality">Equality</h3>
+<p>A <code>Number</code> is considered equal to a float, integer, string or another <code>Number</code> if the represented value is the same, even if the bases are different:</p>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">rebelbase</span> <span class="kn">import</span> <span class="n">Base2</span><span class="p">,</span> <span class="n">Base3</span>
+
+<span class="n">a</span> <span class="o">=</span> <span class="n">Base2</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">a</span> <span class="o">==</span> <span class="n">Base2</span><span class="p">(</span><span class="mi">2</span><span class="p">))</span>   <span class="c1"># &quot;True&quot; (Base 2 10 == base 2 10)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">a</span> <span class="o">==</span> <span class="n">Base3</span><span class="p">(</span><span class="s2">&quot;2&quot;</span><span class="p">))</span> <span class="c1"># &quot;True&quot; (Base 2 10 == base 3 2)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">a</span> <span class="o">==</span> <span class="s2">&quot;10&quot;</span><span class="p">)</span>       <span class="c1"># &quot;True&quot; (Base 2 10 == base 2 10)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">a</span> <span class="o">==</span> <span class="mi">2</span><span class="p">)</span>          <span class="c1"># &quot;True&quot; (Base 2 10 == decimal 2)</span>
+</code></pre></div>
+<h3 id="exponentiation">Exponentiation</h3>
+<p>Raising a float, integer, string or <code>Number</code> to a power represented by a <code>Number</code> (or vice versa) will return a new <code>Number</code> with the exponentiated value, even if the bases are different:</p>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">rebelbase</span> <span class="kn">import</span> <span class="n">Base2</span><span class="p">,</span> <span class="n">Base3</span>
+
+<span class="n">n</span> <span class="o">=</span> <span class="n">Base2</span><span class="p">(</span><span class="mi">8</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">n</span> <span class="o">**</span> <span class="n">Base2</span><span class="p">(</span><span class="mi">3</span><span class="p">))</span>     <span class="c1"># &quot;1000000000&quot; (Base 2 1000 ** base 2 11 == base 2 1000000000)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">n</span> <span class="o">**</span> <span class="n">Base3</span><span class="p">(</span><span class="s2">&quot;10&quot;</span><span class="p">))</span>  <span class="c1"># &quot;1000000000&quot; (Base 2 1000 ** base 3 10 == base 2 1000000000)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">n</span> <span class="o">**</span> <span class="s2">&quot;11&quot;</span><span class="p">)</span>         <span class="c1"># &quot;1000000000&quot; (Base 2 1000 ** base 2 11 == base 2 1000000000)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">n</span> <span class="o">**</span> <span class="mi">3</span><span class="p">)</span>            <span class="c1"># &quot;1000000000&quot; (Base 2 1000 ** decimal 3 == base 2 1000000000)</span>
+</code></pre></div>
+<h3 id="division">Division</h3>
+<p>Dividing a float, integer, string or <code>Number</code> by a <code>Number</code> (or vice versa) will return a new <code>Number</code> with the divided value, even if the bases are different:</p>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">rebelbase</span> <span class="kn">import</span> <span class="n">Base2</span><span class="p">,</span> <span class="n">Base3</span>
+
+<span class="n">n</span> <span class="o">=</span> <span class="n">Base2</span><span class="p">(</span><span class="mf">13.2</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">n</span> <span class="o">/</span> <span class="n">Base2</span><span class="p">(</span><span class="mi">3</span><span class="p">))</span>     <span class="c1"># &quot;100.01100110011001100&quot; (Base 2 1101.00110011001100110 / base 2 11 == base 2 100.01100110011001100)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">n</span> <span class="o">/</span> <span class="n">Base3</span><span class="p">(</span><span class="s2">&quot;10&quot;</span><span class="p">))</span>  <span class="c1"># &quot;100.01100110011001100&quot; (Base 2 1101.00110011001100110 / base 3 10 == base 2 100.01100110011001100)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">n</span> <span class="o">/</span> <span class="s2">&quot;11&quot;</span><span class="p">)</span>         <span class="c1"># &quot;100.01100110011001100&quot; (Base 2 1101.00110011001100110 / base 2 11 == base 2 100.01100110011001100)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">n</span> <span class="o">/</span> <span class="mi">3</span><span class="p">)</span>            <span class="c1"># &quot;100.01100110011001100&quot; (Base 2 1101.00110011001100110 / decimal 3 == base 2 100.01100110011001100)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">n</span> <span class="o">//</span> <span class="n">Base2</span><span class="p">(</span><span class="mi">3</span><span class="p">))</span>     <span class="c1"># &quot;100&quot; (Base 2 1101.00110011001100110 // base 2 11 == base 2 100)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">n</span> <span class="o">//</span> <span class="n">Base3</span><span class="p">(</span><span class="s2">&quot;10&quot;</span><span class="p">))</span>  <span class="c1"># &quot;100&quot; (Base 2 1101.00110011001100110 // base 3 10 == base 2 100)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">n</span> <span class="o">//</span> <span class="s2">&quot;11&quot;</span><span class="p">)</span>         <span class="c1"># &quot;100&quot; (Base 2 1101.00110011001100110 // base 2 11 == base 2 100)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">n</span> <span class="o">//</span> <span class="mi">3</span><span class="p">)</span>            <span class="c1"># &quot;100&quot; (Base 2 1101.00110011001100110 // decimal 3 == base 2 100)</span>
+</code></pre></div>
+<h3 id="modulo">Modulo</h3>
+<p>Reducing a float, integer, string or <code>Number</code> modulo a <code>Number</code> (or vice versa) will return a new <code>Number</code> with the modulus value, even if the bases are different:</p>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">rebelbase</span> <span class="kn">import</span> <span class="n">Base2</span><span class="p">,</span> <span class="n">Base3</span>
+
+<span class="n">n</span> <span class="o">=</span> <span class="n">Base2</span><span class="p">(</span><span class="mi">8</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">n</span> <span class="o">%</span> <span class="n">Base2</span><span class="p">(</span><span class="mi">3</span><span class="p">))</span>     <span class="c1"># &quot;10&quot; (Base 2 1000 % base 2 11 == base 2 10)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">n</span> <span class="o">%</span> <span class="n">Base3</span><span class="p">(</span><span class="s2">&quot;10&quot;</span><span class="p">))</span>  <span class="c1"># &quot;10&quot; (Base 2 1000 % base 3 10 == base 2 10)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">n</span> <span class="o">%</span> <span class="s2">&quot;11&quot;</span><span class="p">)</span>         <span class="c1"># &quot;10&quot; (Base 2 1000 % base 2 11 == base 2 10)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">n</span> <span class="o">%</span> <span class="mi">3</span><span class="p">)</span>            <span class="c1"># &quot;10&quot; (Base 2 1000 % decimal 3 == base 2 10)</span>
+</code></pre></div>
+<h3 id="multiplication">Multiplication</h3>
+<p>Multiplying a float, integer, string or <code>Number</code> by a <code>Number</code> (or vice versa) will return a new <code>Number</code> with the multiplied value, even if the bases are different:</p>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">rebelbase</span> <span class="kn">import</span> <span class="n">Base2</span><span class="p">,</span> <span class="n">Base3</span>
+
+<span class="n">n</span> <span class="o">=</span> <span class="n">Base2</span><span class="p">(</span><span class="mi">8</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">n</span> <span class="o">*</span> <span class="n">Base2</span><span class="p">(</span><span class="mi">3</span><span class="p">))</span>     <span class="c1"># &quot;11000&quot; (Base 2 1000 * base 2 11 == base 2 11000)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">n</span> <span class="o">*</span> <span class="n">Base3</span><span class="p">(</span><span class="s2">&quot;10&quot;</span><span class="p">))</span>  <span class="c1"># &quot;11000&quot; (Base 2 1000 * base 3 10 == base 2 11000)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">n</span> <span class="o">*</span> <span class="s2">&quot;11&quot;</span><span class="p">)</span>         <span class="c1"># &quot;11000&quot; (Base 2 1000 * base 2 11 == base 2 11000)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">n</span> <span class="o">*</span> <span class="mi">3</span><span class="p">)</span>            <span class="c1"># &quot;11000&quot; (Base 2 1000 * decimal 3 == base 2 11000)</span>
+</code></pre></div>
+<h3 id="subtraction">Subtraction</h3>
+<p>Subtracting a float, integer, string or <code>Number</code> from a <code>Number</code> (or vice versa) will return a new <code>Number</code> with subtracted value, even if the bases are different:</p>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">rebelbase</span> <span class="kn">import</span> <span class="n">Base2</span><span class="p">,</span> <span class="n">Base3</span>
+
+<span class="n">a</span> <span class="o">=</span> <span class="n">Base2</span><span class="p">(</span><span class="mi">17</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">a</span> <span class="o">-</span> <span class="n">Base2</span><span class="p">(</span><span class="mi">3</span><span class="p">))</span>     <span class="c1"># &quot;1110&quot; (Base 2 10001 - base 2 11 == base 2 1110)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">a</span> <span class="o">-</span> <span class="n">Base3</span><span class="p">(</span><span class="s2">&quot;10&quot;</span><span class="p">))</span>  <span class="c1"># &quot;1110&quot; (Base 2 10001 - base 3 10 == base 2 1110)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">a</span> <span class="o">-</span> <span class="s2">&quot;11&quot;</span><span class="p">)</span>         <span class="c1"># &quot;1110&quot; (Base 2 10001 - base 2 11 == base 2 1110)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">a</span> <span class="o">-</span> <span class="mi">3</span><span class="p">)</span>            <span class="c1"># &quot;1110&quot; (Base 2 10001 - decimal 3 == base 2 1110)</span>
+</code></pre></div>
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+    <nav class="md-footer__inner md-grid" aria-label="Footer" >
+      
+        
+        <a href=".." class="md-footer__link md-footer__link--prev" aria-label="Previous: RebelBase" rel="prev">
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+          </div>
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              RebelBase
+            </div>
+          </div>
+        </a>
+      
+      
+        
+        <a href="../create/" class="md-footer__link md-footer__link--next" aria-label="Next: Creating a new base" rel="next">
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              Creating a new base
+            </div>
+          </div>
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4Z"/></svg>
+          </div>
+        </a>
+      
+    </nav>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    <script id="__config" type="application/json">{"base": "..", "features": [], "search": "../assets/javascripts/workers/search.16e2a7d4.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version.title": "Select version"}}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.d6c3db9e.min.js"></script>
+      
+    
+  </body>
+</html>
